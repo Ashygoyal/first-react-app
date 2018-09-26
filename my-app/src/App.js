@@ -4,6 +4,27 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
+
+  // state is available in Class based components only, and not in function based components
+  // props is used to get value from outside components(Parent component or wrapping to a Child or embedded component) 
+  // and state is used to get values from inside the component
+  state = {
+    persons: [
+      {name:'Jane', age: 26},
+      {name: 'John', age: 27},
+      {name: 'Jim', age: 29}
+    ]
+  }
+  switchNameHandler = () => {
+    //console.log('Clicked');
+    this.setState({
+      persons: [
+        {name:'Johnny', age: 26},
+        {name: 'John', age: 27},
+        {name: 'Jim', age: 31}
+      ]
+    })
+  }
   render() {
     // In JSX of this component, we cant have siblings of div, since its preferred to have one root element (div, in this case) per component.
     return (
@@ -16,7 +37,15 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <h1> We will start our app here</h1>
-        <Person/>
+        {/* <Person name='John' age='22'/>
+        <Person name='Jane' age='21'> My Hobbies: Gaming </Person>
+        <Person name='Jim' age='23'/> */}
+
+        {/* Here this refers to the class 'App' */}
+        <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
+        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}> My Hobbies: Gaming </Person>
+        <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
+        <button onClick={this.switchNameHandler}> Switch Names </button>
       </div>
     );
 
