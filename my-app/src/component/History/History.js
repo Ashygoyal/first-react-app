@@ -44,8 +44,10 @@ import React, { Component } from 'react';
                         ltc: ltc.data.LTC.USD
                     }
                     // Set the state of todayprice to the content of the object f
-                    this.setState({ todayprice: f });
-                }));
+                    
+                    localStorage.setItem('todayprice', JSON.stringify(f));
+                    this.setState({ todayprice: f });                    
+                }));    
         }
         // This function gets the prices for the yesterday.
         getYesterdayPrice () {
@@ -61,6 +63,7 @@ import React, { Component } from 'react';
                         ltc: ltc.data.LTC.USD
                     }
                     // Set the state of yesterdayprice to the content of the object f
+                    localStorage.setItem('yesterdayprice', JSON.stringify(f));
                     this.setState({ yesterdayprice: f });
                 }));
         }
@@ -78,6 +81,7 @@ import React, { Component } from 'react';
                         ltc: ltc.data.LTC.USD
                     }
                     // Set the state of twodaysprice to the content of the object f
+                    localStorage.setItem('twodaysprice', JSON.stringify(f));
                     this.setState({ twodaysprice: f });
                 }));
         }
@@ -95,8 +99,10 @@ import React, { Component } from 'react';
                         ltc: ltc.data.LTC.USD
                     }
                     // Set the state of threedaysprice to the content of the object f
+                    localStorage.setItem('threedaysprice', JSON.stringify(f));
                     this.setState({ threedaysprice: f });
                 }));
+              
         }
         // This function gets the prices for the four days ago.
         getFourDaysPrice () {
@@ -112,8 +118,10 @@ import React, { Component } from 'react';
                         ltc: ltc.data.LTC.USD
                     }
                     // Set the state of fourdaysprice to the content of the object f
+                    localStorage.setItem('fourdaysprice', JSON.stringify(f));
                     this.setState({ fourdaysprice: f });
                 }));
+
         }
         // This is called when an instance of a component is being created and inserted into the DOM.
         componentWillMount () {
@@ -122,6 +130,15 @@ import React, { Component } from 'react';
             this.getTwoDaysPrice();
             this.getThreeDaysPrice();
             this.getFourDaysPrice();
+        }
+        componentDidMount () {
+            if (!navigator.onLine) {
+                this.setState({ todayprice: JSON.parse(localStorage.getItem('todayprice')) });
+                this.setState({ yesterdayprice: JSON.parse(localStorage.getItem('yesterdayprice')) });
+                this.setState({ twodaysprice: JSON.parse(localStorage.getItem('twodaysprice')) });
+                this.setState({ threedaysprice: JSON.parse(localStorage.getItem('threedaysprice')) });
+                this.setState({ fourdaysprice: JSON.parse(localStorage.getItem('fourdaysprice')) });
+            }
         }
 
         render() {
