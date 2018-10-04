@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-
+import Button from './component/Button/Button'
 class App extends Component {
 
   // state is available in Class based components only, and not in function based components
@@ -45,7 +45,8 @@ class App extends Component {
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age}></Person>
         <Person name={this.state.persons[1].name} age={this.state.persons[1].age}> My Hobbies: Gaming </Person>
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
-        <button onClick={this.switchNameHandler}> Switch Names </button>
+        <Button name="Click" clickHandler={this.switchNameHandler} />
+        {/* <button onClick={this.switchNameHandler}> Switch Names </button> */}
       </div>
     );
 
