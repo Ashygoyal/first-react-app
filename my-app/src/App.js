@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Person from './Person/Person';
-import Button from './component/Button/Button'
+import Button from './component/Button/Button';
+import Today from './component/Today/Today';
+import History from './component/History/History';
 class App extends Component {
 
   // state is available in Class based components only, and not in function based components
@@ -32,6 +34,14 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
+          <nav className="navbar">
+            <div className="navbar-brand">
+              <span className="navbar-item">PusherCoins</span>
+            </div>
+            <div className="navbar-end">
+              <a className="navbar-item" href="https://pusher.com" target="_blank" rel="noopener noreferrer">Pusher.com</a>
+            </div>
+          </nav>
         </header>
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
@@ -47,6 +57,15 @@ class App extends Component {
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age}></Person>
         <Button name="Click" clickHandler={this.switchNameHandler} />
         {/* <button onClick={this.switchNameHandler}> Switch Names </button> */}
+        <section className="results--section">
+          <div className="container">
+            <h1>PusherCoins is a realtime price information about<br></br> BTC, ETH and LTC.</h1>
+          </div>
+          <div className="results--section__inner">
+            <Today />
+            <History />
+          </div>
+        </section>
       </div>
     );
 
